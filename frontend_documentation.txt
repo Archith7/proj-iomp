@@ -1,0 +1,114 @@
+Project: iomp-frontend (React)
+
+Overview
+--------
+This is a small React frontend application bootstrapped with Create React App. It provides a simple Customer Service Chatbot UI which communicates with a backend (hosted at https://iomp-backend.onrender.com) to: 1) submit user questions (/chat), 2) perform text-to-speech (/tts) and 3) speech-to-text (/stt). The UI supports typed messages, short voice recording (recording length ~4s), playback of TTS audio, and a typing indicator.
+
+Primary features
+----------------
+- Single-page React app (Create React App).
+- Main UI component: `Chatbot` (src/components/Chatbot.js).
+- TTS and STT handled by the backend endpoints.
+- Simple, responsive CSS styles in `Chatbot.css`.
+- Auto-scrolling chat window, typing indicator, and audio playback for bot responses.
+
+Project structure (relevant files)
+----------------------------------
+- package.json — project metadata, dependencies and npm scripts.
+- README.md — default CRA README with available scripts.
+- public/index.html — HTML template where React mounts.
+- src/index.js — React entry, mounts `<App/>`.
+- src/App.js — root component, renders heading and `<Chatbot/>`.
+- src/components/Chatbot.js — chatbot UI and logic (state, fetch calls to backend, media recording).
+- src/components/Chatbot.css — styling for the chatbot UI.
+- src/App.css, src/index.css — global styles and app styles.
+
+Key implementation details
+--------------------------
+- Chat component uses React hooks: useState, useEffect, useRef.
+- Endpoints called:
+  - POST https://iomp-backend.onrender.com/chat  (JSON body: { question: text }) -> expects JSON { answer }
+  - GET  https://iomp-backend.onrender.com/tts?text=...&language_code=en-IN&speaker=anushka -> returns audio/mpeg
+  - POST https://iomp-backend.onrender.com/stt?language_code=en-IN -> expects multipart/form-data with file, returns JSON { transcript }
+- The code creates object URLs for received audio blobs and plays them with `new Audio(url).play()`.
+- Recording approach: uses MediaRecorder and captures ~4 seconds of audio, sends as `speech.wav` to /stt, and populates the input field with the returned transcript.
+- The UI disables input while the bot is "typing" (isTyping) and during recording.
+
+Dependencies (from package.json)
+--------------------------------
+- react ^19.1.1
+- react-dom ^19.1.1
+- react-scripts 5.0.1
+- web-vitals and testing libraries (testing-library/*)
+
+Available npm scripts
+---------------------
+- npm start  — starts the dev server (react-scripts start)
+- npm run build — builds production bundle
+- npm test — launches test runner
+- npm run eject — eject CRA configuration (one-way)
+
+How to run (Windows PowerShell)
+-------------------------------
+1. Install dependencies (from project root):
+
+   npm install
+
+2. Start development server:
+
+   npm start
+
+   Then open http://localhost:3000 in your browser.
+
+3. Build for production:
+
+   npm run build
+
+4. Run tests (if any):
+
+   npm test
+
+Notes and environment considerations
+-----------------------------------
+- Backend endpoints are hardcoded to https://iomp-backend.onrender.com in `Chatbot.js`. For local development or alternate environments, consider moving these to environment variables (e.g., REACT_APP_API_BASE) and using `process.env.REACT_APP_API_BASE`.
+
+- CORS: Ensure the backend allows requests from your development origin (http://localhost:3000).
+
+- Media: the app uses `navigator.mediaDevices.getUserMedia` and `MediaRecorder`. Browsers must support these APIs. Most modern browsers do; in some environments (insecure origins or older browsers) these calls will fail.
+
+- Recording length: the component currently records for a fixed 4 seconds. For flexible UX, consider exposing start/stop controls and showing recording state/time.
+
+- Error handling: the component has some error handling (try/catch) but could be improved: show user-friendly error messages in the UI, retry logic, and better TTS/stt failure detection.
+
+- Security: avoid embedding production backend secrets in frontend code. Use server-side tokens or protected endpoints when needed.
+
+Edge cases and suggestions
+--------------------------
+- Empty messages: currently prevented; keep trimming and validation.
+- Large responses: long bot text is displayed but might need wrapping or expandable message UI.
+- Audio cleanup: created object URLs (via URL.createObjectURL) are not revoked; if many audios are created, consider revoking old URLs to release memory: URL.revokeObjectURL(url).
+- Accessibility: add ARIA roles for chat messages, buttons, and provide keyboard-accessible controls for recording and playback.
+- Tests: add unit tests for `Chatbot` (mock fetch calls) and integration tests for major flows.
+
+Developer notes / next steps
+---------------------------
+- Move backend base URL to `.env` via REACT_APP_API_BASE and use it like: `${process.env.REACT_APP_API_BASE}/chat`.
+- Add a small instructions section in the UI when microphone permission is denied.
+- Add a confirm prompt before `eject` in docs (already one-way warning in CRA).
+- Add a README section describing the backend contract (API shapes for /chat, /tts, /stt) so backend and frontend teams align.
+
+File created
+------------
+This file was generated and saved at:
+`frontend_documentation.txt` (project root)
+
+Verification
+------------
+- To verify, open the project root and confirm `frontend_documentation.txt` exists and contains the summary above.
+
+If you'd like, I can:
+- Move the backend URLs to environment variables and patch `Chatbot.js` accordingly.
+- Add a short README update or a small integration test mocking the backend.
+- Create a simpler markdown README instead of plaintext.
+
+-- End of documentation

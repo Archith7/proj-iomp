@@ -1,0 +1,228 @@
+
+/* Modern AI Chat Interface */
+.chatgpt-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.chatgpt-header {
+  padding: 16px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+  color: #2d333a;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.chatgpt-window {
+  flex: 1;
+  padding: 0;
+  overflow-y: auto;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+.chatgpt-welcome {
+  text-align: center;
+  color: #6b7280;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.chatgpt-welcome h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.chatgpt-welcome p {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.chatgpt-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding: 0 24px;
+  gap: 16px;
+}
+
+.chatgpt-row.user {
+  flex-direction: row-reverse;
+  background: #f7f7f8;
+  padding: 24px;
+  margin-bottom: 0;
+}
+
+.chatgpt-row.bot {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 24px;
+  margin-bottom: 0;
+}
+
+.chatgpt-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.chatgpt-bubble {
+  max-width: 100%;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  word-break: break-word;
+  background: transparent;
+  color: #374151;
+}
+
+.chatgpt-bubble.user {
+  background: transparent;
+  color: #374151;
+}
+
+.chatgpt-bubble.bot {
+  background: transparent;
+  color: #374151;
+}
+
+.chatgpt-input-area {
+  position: sticky;
+  bottom: 0;
+  background: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  padding: 20px 24px;
+}
+
+.chatgpt-input-container {
+  display: flex;
+  max-width: 768px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 2px solid #e5e5e5;
+  border-radius: 24px;
+  padding: 4px;
+  transition: border-color 0.2s ease;
+}
+
+.chatgpt-input-container:focus-within {
+  border-color: #10a37f;
+}
+
+.chatgpt-input-area input {
+  flex: 1;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  outline: none;
+  background: transparent;
+  color: #374151;
+  resize: none;
+}
+
+.chatgpt-input-area input::placeholder {
+  color: #9ca3af;
+}
+
+.chatgpt-send-btn {
+  padding: 8px 12px;
+  background: #10a37f;
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatgpt-send-btn:hover {
+  background: #0d8a6a;
+}
+
+.chatgpt-send-btn:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* Add typing indicator animation */
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  30% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.typing-indicator {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  animation: typing 1.4s infinite;
+  color: #6b7280;
+}
+
+/* Scrollbar styling */
+.chatgpt-window::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatgpt-window::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.chatgpt-window::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.chatgpt-window::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chatgpt-container {
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 0;
+  }
+  
+  .chatgpt-row {
+    padding: 0 16px;
+  }
+  
+  .chatgpt-row.user,
+  .chatgpt-row.bot {
+    padding: 16px;
+  }
+  
+  .chatgpt-input-area {
+    padding: 16px;
+  }
+}
