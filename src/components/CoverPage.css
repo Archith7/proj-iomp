@@ -1,0 +1,79 @@
+.cover-page {
+  min-height: calc(100vh - 70px); /* Subtract navbar height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  text-align: center;
+  padding: 2rem;
+}
+
+.cover-content {
+  max-width: 800px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.cover-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.cover-title-strong {
+  color: #065f46;
+}
+
+.cover-title-highlight {
+  color: #0d8a6a;
+}
+
+.cover-subtitle {
+  font-size: 1.25rem;
+  color: #4b5563;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.cover-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cover-btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cover-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 163, 127, 0.2);
+}
+
+.btn-lg-primary {
+  background-color: #10a37f;
+  color: white;
+}
+
+.btn-lg-outline {
+  background-color: white;
+  color: #0d8a6a;
+  border: 2px solid #10a37f;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
