@@ -6,7 +6,7 @@ const AVATAR_USER = 'https://ui-avatars.com/api/?name=U&background=10a37f&color=
 const AVATAR_BOT = 'https://ui-avatars.com/api/?name=AI&background=6b7280&color=fff&size=32&rounded=true&format=svg';
 
 // ✅ CHANGED: URL to localhost
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://iomp-backbro.onrender.com";
 
 const generateSarvamTTS = async (text) => {
   try {
@@ -206,7 +206,7 @@ const Chatbot = () => {
                 width: '100%'
               }}
             >
-              {uploadStatus === 'uploading' ? 'Processing & Indexing...' : 'Start Chatting'}
+              {uploadStatus === 'uploading' ? 'Processing & Indexing...' : 'Upload and Start Chatting'}
             </button>
           </div>
 
