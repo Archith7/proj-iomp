@@ -19,9 +19,8 @@ function App() {
     const storedUser = localStorage.getItem('authUser');
     const storedAuthFlag = localStorage.getItem('isAuthenticated') === 'true';
 
-    if (storedToken) {
-      setIsAuthenticated(true);
-    } else if (storedAuthFlag) {
+    // If any auth data exists, stay logged in
+    if (storedToken || storedUser || storedAuthFlag) {
       setIsAuthenticated(true);
     }
 

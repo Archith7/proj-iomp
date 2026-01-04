@@ -1,53 +1,141 @@
-# Getting Started with Create React App
+# Customer Support Voice & Text Chat Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack application providing AI-powered customer support through voice and text interfaces with document-based RAG (Retrieval Augmented Generation).
 
-## Available Scripts
+## 🎯 Features
 
-In the project directory, you can run:
+- **Voice Chat:** Real-time voice conversations with STT/TTS
+- **Text Chat:** Floating chat interface for typed conversations
+- **Document Upload:** Support for PDF, DOCX, TXT files
+- **RAG-based Answers:** Context-aware responses using uploaded documents
+- **User Authentication:** Secure login/signup with JWT and OTP
+- **Conversation History:** Track and review past interactions
+- **Analytics Dashboard:** View usage statistics and insights
+- **Dark Neon UI:** Modern cyberpunk-themed interface
 
-### `npm start`
+## 📁 Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+customer-service/
+├── frontend/                 # React application
+│   ├── src/
+│   │   ├── components/      # React components
+│   │   └── utils/           # Helper functions
+│   ├── public/              # Static assets
+│   ├── package.json
+│   └── README.md            # Frontend documentation
+│
+├── backend/                 # FastAPI server
+│   ├── main.py             # Main application
+│   ├── .env                # Environment variables
+│   ├── start_server.ps1    # Start script
+│   └── README.md           # Backend documentation
+│
+├── README.md               # This file
+├── .gitignore
+└── Documentation files
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Quick Start
 
-### `npm test`
+### Backend Setup
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Navigate to backend:
+```bash
+cd backend
+```
 
-### `npm run build`
+2. Install Python dependencies:
+```bash
+pip install fastapi uvicorn motor pymongo pinecone-client groq bcrypt pyjwt python-dotenv
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Configure `.env` file with your API keys
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Start the server:
+```bash
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend Setup
 
-### `npm run eject`
+1. Navigate to frontend:
+```bash
+cd frontend
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install dependencies:
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Start the development server:
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend: http://localhost:8000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🛠️ Tech Stack
 
-## Learn More
+### Frontend
+- React 18
+- React Router DOM
+- Tailwind CSS v3
+- Web Speech API (STT/TTS)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Backend
+- FastAPI
+- MongoDB (Motor)
+- Pinecone (Vector Store)
+- Groq (LLM)
+- Sarvam AI (STT/TTS)
+- JWT Authentication
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📖 Documentation
 
-### Code Splitting
+- [Frontend Documentation](./frontend/README.md)
+- [Backend Documentation](./backend/README.md)
+- [MongoDB Integration](./MONGODB_INTEGRATION.md)
+- [Voice Call Features](./VOICE_CALL_FEATURES.md)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🔑 Environment Variables
+
+See `backend/.env.example` for required environment variables:
+- MongoDB connection string
+- Pinecone API key
+- Groq API keys
+- Brevo API key
+- JWT secret
+
+## 🎨 UI Features
+
+- **Dark Neon Theme:** Cyan, purple, and pink accent colors
+- **Smooth Animations:** Float, glow, wave effects
+- **Responsive Design:** Works on all screen sizes
+- **Custom Scrollbars:** Gradient-styled scrollbars
+- **Neon Glow Effects:** Shadows and borders with glow
+
+## 📝 Usage
+
+1. **Sign Up/Login:** Create an account or log in
+2. **Upload Document:** Upload a PDF/DOCX/TXT file
+3. **Start Conversation:**
+   - Click "Start Voice Call" for voice interaction
+   - Click floating 💬 button for text chat
+4. **Ask Questions:** Ask about the uploaded document
+5. **View History:** Check past conversations in History tab
+6. **Check Analytics:** View usage stats in Analytics tab
+
+## 🤝 Contributing
+
+This is a private project. For access or contributions, please contact the repository owner.
+
+## 📄 License
+
+Private - All rights reserved
 
 ### Analyzing the Bundle Size
 
